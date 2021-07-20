@@ -88,13 +88,14 @@ Use the finalScore function below to do the following:
 function finalScore(number) {
   let homeScore = 0;
   let awayScore = 0;
-  const totalScore = [];
+  let totalScore = {"Home": 0, "Away": 0};
   for (let i = 0; i < number; i++) {
     homeScore = homeScore + inning();
     awayScore = awayScore + inning();
-    totalScore.push({Home: homeScore, Away: awayScore});
-    return totalScore[0];
+    totalScore.Home = homeScore;
+    totalScore.Away = awayScore;
   }
+  return totalScore;
 }
 
 console.log(finalScore(8));
