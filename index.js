@@ -11,12 +11,14 @@
  * 
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
-*/
+ */
 
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+console.log(processFirstItem(['foo', 'bar'], function (str) {
+  return str + str
+}));
 
 // ⭐️ Example Challenge END ⭐️
 
@@ -40,7 +42,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
 function counterMaker() {
   let count = 0;
   return function counter() {
-   return count++;
+    return count++;
   }
 }
 
@@ -63,7 +65,7 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(){
+function inning() {
   return Math.floor(Math.random() * 3);
 }
 
@@ -81,27 +83,28 @@ Use the finalScore function below to do the following:
   "Home": 11,
   "Away": 5
 }
-*/ 
+*/
 
-function finalScore(number){
-   let homeScore = 0;
-   let awayScore = 0;
-   const scoreBoard = [];
-   for(let i = 0; i < 10; i++){
-     const scoreBoard = inning() * number; 
-     
-   }
-   return scoreBoard;
+function finalScore(number) {
+  let homeScore = 0;
+  let awayScore = 0;
+  const totalScore = [];
+  for (let i = 0; i < number; i++) {
+    homeScore = homeScore + inning();
+    awayScore = awayScore + inning();
+    totalScore.push({Home: homeScore, Away: awayScore});
+    return totalScore[0];
+  }
 }
 
-console.log(finalScore(9));
+console.log(finalScore(8));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
+function getInningScore( /*Your Code Here */ ) {
   /*Your Code Here */
 }
 
@@ -147,7 +150,7 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard( /* CODE HERE */ ) {
   /* CODE HERE */
 }
 
@@ -155,7 +158,7 @@ function scoreboard(/* CODE HERE */) {
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
-function foo(){
+function foo() {
   console.log('its working');
   return 'bar';
 }
