@@ -2,26 +2,27 @@
 
 /**Example Task : processFirstItem()
  * This example shows how you might go about solving the rest of the tasks
- * 
+ *
  * Use the higher order function processFirstItem below to do the following:
  *  1. Receive an array of strings in a parameter
  *  2. Receive a callback function that takes a string as its argument in a parameter
- *  3. Return the result of invoking the callback function and passing in the FIRST 
+ *  3. Return the result of invoking the callback function and passing in the FIRST
  *     element in the array as the argument
- * 
+ *
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
  */
 
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
-console.log(processFirstItem(['foo', 'bar'], function (str) {
-  return str + str
-}));
+console.log(
+  processFirstItem(["foo", "bar"], function (str) {
+    return str + str;
+  })
+);
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
@@ -43,7 +44,7 @@ function counterMaker() {
   let count = 0;
   return function counter() {
     return count++;
-  }
+  };
 }
 
 const counter1 = counterMaker();
@@ -54,7 +55,6 @@ let count = 0;
 function counter2() {
   return count++;
 }
-
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
@@ -85,40 +85,41 @@ Use the finalScore function below to do the following:
 }
 */
 
-function finalScore(inningcb, number) {
-  let homeScore = 0;
-  let awayScore = 0;
-  let totalScore = {"Home": 0, "Away": 0};
+function finalScore(callback, number) {
+  let finalHome = 0;
+  let finalAway = 0;
+  const totalScore = { Home: 0, Away: 0 };
+
   for (let i = 0; i < number; i++) {
-    homeScore = homeScore + inningcb();
-    awayScore = awayScore + inningcb();
-    totalScore.Home = homeScore;
-    totalScore.Away = awayScore;
+    finalHome = finalHome + inning();
+    finalAway = finalAway + inning();
+  }
+  for (let i = 0; i < number; i++) {
+    totalScore.Home += finalHome[i];
+    totalScore.Away += finalAway[i];
   }
   return totalScore;
 }
 
-console.log(finalScore(inning, 8));
+console.log("task 3", finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(inningcb) {
-  let homeScore = 0; 
+function getInningScore(callback) {
+  let homeScore = 0;
   let awayScore = 0;
-  let inningScore = {"Home": 0, "Away": 0};
-  for(let i = 0; i < 1; i++){
-    homeScore = homeScore + inningcb();
-    awayScore = awayScore + inningcb();
-    inningScore.Home = homeScore;
-    inningScore.Away = awayScore;
+  let inningScore = {};
+  for (let i = 0; i < 1; i++) {
+    inningScore.Home = homeScore + inning();
+    inningScore.Away = awayScore + inning();
   }
   return inningScore;
 }
 
-console.log(getInningScore(inning));
+console.log("task 4", getInningScore(inning));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -161,17 +162,27 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard( /* CODE HERE */ ) {
-  /* CODE HERE */
+function scoreboard(byInCallback, callback, number) {
+  let homeScore = 0;
+  let awayScore = 0;
+  scoreByInning = { Home: 0, Away: 0 };
+  for (let i = 0; i < number; i++) {
+    scoreByInning.Home = homeScore + inning();
+    scoreByInning.Away = awayScore + inning();
+    for (let i = 0; i < number; i++) {
+      homeScore = homeScore + getInningScore();
+      awayScore = awayScore + getInningScore();
+      return scoreByInning;
+    }
+  }
 }
 
-
-
+console.log("task 5", scoreboard(getInningScore, inning, 9));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
-  console.log('its working');
-  return 'bar';
+  console.log("its working");
+  return "bar";
 }
 foo();
 module.exports = {
@@ -183,4 +194,4 @@ module.exports = {
   finalScore,
   getInningScore,
   scoreboard,
-}
+};
